@@ -15,9 +15,9 @@ namespace ConsoleApp1
     {
         static readonly string AUTHORITY = "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47";
         //[OR] static readonly string AUTHORITY = "https://login.microsoftonline.com/microsoft.onmicrosoft.com";
-        static readonly string FRONT_APP_KEY = "AquzjfcocA0N/a8Osg1t2T+U2iVJc/qeh4h3w0qZ+3w=";
-        static readonly string FRONT_APP_ID = "c9c4b9ba-8364-49e5-bb77-0b8ed81615c9";
-        static readonly string BACKEND_APP_ID = "cbd412df-fb29-432f-88a2-494fa501812d";
+        static readonly string FRONT_APP_KEY = "<KEY>";
+        static readonly string FRONT_APP_ID = "xxxxaxxxx-xxxx-xxxx-xxxx-xxxxx";
+        static readonly string BACKEND_APP_ID = "xxx-xxx-xxx-xxx-xxx";
         protected static string GetOauthAuthorizationHeader()
         {
             AuthenticationResult result = null;
@@ -49,7 +49,7 @@ namespace ConsoleApp1
             var url = "https://michieaibackendapi.azurewebsites.net/api/values/1";
             var req = HttpWebRequest.Create(url) as HttpWebRequest;
             req.Headers.Add("Authorization", "Bearer " + token);
-            //req.Headers.Add("Ocp-Apim-Subscription-Key", "a31bea6cf8514df0ad40e72293d500bd");
+            //req.Headers.Add("Ocp-Apim-Subscription-Key", "xxxxxxxxxxxxxxxxxxxx");
 
             req.Method = "GET";
             
