@@ -1,0 +1,173 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "logicAppName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "metadata": {
+        "description": "Name of the Logic App."
+      }
+    },
+    "logicAppLocation": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "allowedValues": [
+        "[resourceGroup().location]",
+        "eastasia",
+        "southeastasia",
+        "centralus",
+        "eastus",
+        "eastus2",
+        "westus",
+        "northcentralus",
+        "southcentralus",
+        "northeurope",
+        "westeurope",
+        "japanwest",
+        "japaneast",
+        "brazilsouth",
+        "australiaeast",
+        "australiasoutheast",
+        "southindia",
+        "centralindia",
+        "westindia",
+        "canadacentral",
+        "canadaeast",
+        "uksouth",
+        "ukwest",
+        "westcentralus",
+        "westus2"
+      ],
+      "metadata": {
+        "description": "Location of the Logic App."
+      }
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "name": "[parameters('logicAppName')]",
+      "type": "Microsoft.Logic/workflows",
+      "location": "[parameters('logicAppLocation')]",
+      "tags": {
+        "displayName": "LogicApp"
+      },
+      "apiVersion": "2016-06-01",
+      "properties": {
+  "$connections": {
+    "value": {
+      "azureblob": {
+        "connectionId": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/resourceGroups/michi-eai-pattern-rg/providers/Microsoft.Web/connections/azureblob",
+        "connectionName": "azureblob",
+        "id": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/providers/Microsoft.Web/locations/eastasia/managedApis/azureblob"
+      },
+      "servicebus_1": {
+        "connectionId": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/resourceGroups/michi-eai-pattern-rg/providers/Microsoft.Web/connections/servicebus-1",
+        "connectionName": "servicebus-1",
+        "id": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/providers/Microsoft.Web/locations/eastasia/managedApis/servicebus"
+      }
+    }
+  },	  
+        "definition": {
+    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+    "actions": {
+      "For_each_2": {
+        "actions": {
+          "Complete_the_message_in_a_queue": {
+            "inputs": {
+              "host": {
+                "connection": {
+                  "name": "@parameters('$connections')['servicebus_1']['connectionId']"
+                }
+              },
+              "method": "delete",
+              "path": "/@{encodeURIComponent(encodeURIComponent('adapter-sendto-contoso'))}/messages/complete",
+              "queries": {
+                "lockToken": "@items('For_each_2')?['LockToken']",
+                "queueType": "Main"
+              }
+            },
+            "runAfter": {
+              "Create_blob_2": [
+                "Succeeded"
+              ]
+            },
+            "type": "ApiConnection"
+          },
+          "Create_blob_2": {
+            "inputs": {
+              "body": "@base64ToBinary(items('For_each_2')?['ContentData'])",
+              "host": {
+                "connection": {
+                  "name": "@parameters('$connections')['azureblob']['connectionId']"
+                }
+              },
+              "method": "post",
+              "path": "/datasets/default/files",
+              "queries": {
+                "folderPath": "/files",
+                "name": "@items('For_each_2')?['LockToken']",
+                "queryParametersSingleEncoded": true
+              }
+            },
+            "runAfter": {},
+            "runtimeConfiguration": {
+              "contentTransfer": {
+                "transferMode": "Chunked"
+              }
+            },
+            "type": "ApiConnection"
+          }
+        },
+        "foreach": "@body('Get_messages_from_a_queue_(peek-lock)')",
+        "runAfter": {
+          "Get_messages_from_a_queue_(peek-lock)": [
+            "Succeeded"
+          ]
+        },
+        "type": "Foreach"
+      },
+      "Get_messages_from_a_queue_(peek-lock)": {
+        "inputs": {
+          "host": {
+            "connection": {
+              "name": "@parameters('$connections')['servicebus_1']['connectionId']"
+            }
+          },
+          "method": "get",
+          "path": "/@{encodeURIComponent(encodeURIComponent('adapter-sendto-contoso'))}/messages/batch/peek",
+          "queries": {
+            "maxMessageCount": 20,
+            "queueType": "Main"
+          }
+        },
+        "runAfter": {},
+        "type": "ApiConnection"
+      }
+    },
+    "contentVersion": "1.0.0.0",
+    "outputs": {},
+    "parameters": {
+      "$connections": {
+        "defaultValue": {},
+        "type": "Object"
+      }
+    },
+    "triggers": {
+      "Recurrence": {
+        "recurrence": {
+          "frequency": "Minute",
+          "interval": 3
+        },
+        "type": "Recurrence"
+      }
+    }
+  },
+        "parameters": {}
+      }
+    }
+  ],
+  "outputs": {}
+}

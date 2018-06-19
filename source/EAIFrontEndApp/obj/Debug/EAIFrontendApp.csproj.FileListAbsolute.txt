@@ -1,0 +1,12 @@
+C:\Temp\JCI\EAI\EAIFrontEndApp\bin\Debug\ConsoleApp1.exe.config
+C:\Temp\JCI\EAI\EAIFrontEndApp\bin\Debug\ConsoleApp1.exe
+C:\Temp\JCI\EAI\EAIFrontEndApp\bin\Debug\ConsoleApp1.pdb
+C:\Temp\JCI\EAI\EAIFrontEndApp\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Temp\JCI\EAI\EAIFrontEndApp\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.xml
+C:\Temp\JCI\EAI\EAIFrontEndApp\obj\Debug\EAIFrontendApp.csprojAssemblyReference.cache
+C:\Temp\JCI\EAI\EAIFrontEndApp\obj\Debug\EAIFrontendApp.csproj.CoreCompileInputs.cache
+C:\Temp\JCI\EAI\EAIFrontEndApp\obj\Debug\EAIFrontendApp.csproj.CopyComplete
+C:\Temp\JCI\EAI\EAIFrontEndApp\obj\Debug\ConsoleApp1.exe
+C:\Temp\JCI\EAI\EAIFrontEndApp\obj\Debug\ConsoleApp1.pdb
+C:\Temp\JCI\EAI\EAIFrontEndApp\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll
+C:\Temp\JCI\EAI\EAIFrontEndApp\bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.xml

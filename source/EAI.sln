@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAIBackendAPI", "EAIBackendAPI\EAIBackendAPI.csproj", "{46E8AD0E-7556-41D9-86C3-E80852080CCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAIFrontendApp", "EAIFrontEndApp\EAIFrontendApp.csproj", "{EB0777E7-2C3A-41FF-A073-9482E89E51C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LogicApps", "LogicApps", "{C310959B-3CDA-4F42-AADF-D14D633A5BFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Artifacts", "Artifacts", "{7A3DD80A-F697-4064-A97E-ED2DFD0826F1}"
+	ProjectSection(SolutionItems) = preProject
+		LogicApps\Artifacts\order-to-sap.xslt = LogicApps\Artifacts\order-to-sap.xslt
+		LogicApps\Artifacts\order.xsd = LogicApps\Artifacts\order.xsd
+		LogicApps\Artifacts\sample-order.xml = LogicApps\Artifacts\sample-order.xml
+		LogicApps\Artifacts\sap-order.xsd = LogicApps\Artifacts\sap-order.xsd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Flows", "Flows", "{53A77B0B-961B-441A-9B3C-7AB748DF13C1}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Flows", "LogicApps\Flows\Flows\Flows.deployproj", "{8C173792-910E-4C58-B382-ACFF4B05A275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAIFunctionsBackend", "EAIFunctionsBackend\EAIFunctionsBackend.csproj", "{B0076ADD-E8D8-405F-89E2-F91B78882216}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46E8AD0E-7556-41D9-86C3-E80852080CCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E8AD0E-7556-41D9-86C3-E80852080CCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E8AD0E-7556-41D9-86C3-E80852080CCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E8AD0E-7556-41D9-86C3-E80852080CCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB0777E7-2C3A-41FF-A073-9482E89E51C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB0777E7-2C3A-41FF-A073-9482E89E51C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB0777E7-2C3A-41FF-A073-9482E89E51C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB0777E7-2C3A-41FF-A073-9482E89E51C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C173792-910E-4C58-B382-ACFF4B05A275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C173792-910E-4C58-B382-ACFF4B05A275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C173792-910E-4C58-B382-ACFF4B05A275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C173792-910E-4C58-B382-ACFF4B05A275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0076ADD-E8D8-405F-89E2-F91B78882216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0076ADD-E8D8-405F-89E2-F91B78882216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0076ADD-E8D8-405F-89E2-F91B78882216}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0076ADD-E8D8-405F-89E2-F91B78882216}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7A3DD80A-F697-4064-A97E-ED2DFD0826F1} = {C310959B-3CDA-4F42-AADF-D14D633A5BFE}
+		{53A77B0B-961B-441A-9B3C-7AB748DF13C1} = {C310959B-3CDA-4F42-AADF-D14D633A5BFE}
+		{8C173792-910E-4C58-B382-ACFF4B05A275} = {53A77B0B-961B-441A-9B3C-7AB748DF13C1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C81F1571-BB0A-4C84-8DC0-0FF4E2E18BFB}
+	EndGlobalSection
+EndGlobal

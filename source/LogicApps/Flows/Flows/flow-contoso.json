@@ -1,0 +1,117 @@
+﻿{
+    "$connections": {
+        "value": {
+            "servicebus": {
+                "connectionId": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/resourceGroups/michi-eai-pattern-rg/providers/Microsoft.Web/connections/servicebus",
+                "connectionName": "servicebus",
+                "id": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/providers/Microsoft.Web/locations/eastasia/managedApis/servicebus"
+            }
+        }
+    },
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Response": {
+                "inputs": {
+                    "body": "<Status>OK</Status>",
+                    "headers": {
+                        "Content-Type": "application/xml"
+                    },
+                    "statusCode": 200
+                },
+                "kind": "Http",
+                "runAfter": {
+                    "Send_message": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Response"
+            },
+            "Send_message": {
+                "inputs": {
+                    "body": {
+                        "ContentData": "@{base64(actionOutputs('Transform_XML').body)}",
+                        "ContentType": "application/xml"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['servicebus']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/@{encodeURIComponent(encodeURIComponent('queue-contoso-to-sap'))}/messages",
+                    "queries": {
+                        "systemProperties": "None"
+                    }
+                },
+                "runAfter": {
+                    "Transform_XML": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Transform_XML": {
+                "inputs": {
+                    "content": "@{triggerBody()}",
+                    "integrationAccount": {
+                        "map": {
+                            "name": "Ordero-To-SAP"
+                        }
+                    }
+                },
+                "runAfter": {
+                    "XML_Validation": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Xslt"
+            },
+          "Validation_Failed": {
+            "inputs": {
+              "body": {
+                "Status": "Failed"
+              },
+              "statusCode": 200
+            },
+            "kind": "Http",
+            "runAfter": {
+              "XML_Validation": [
+                "Failed"
+              ]
+            },
+            "type": "Response"
+          },
+            "XML_Validation": {
+                "inputs": {
+                    "content": "@{triggerBody()}",
+                    "integrationAccount": {
+                        "schema": {
+                            "name": "Order"
+                        }
+                    }
+                },
+                "runAfter": {},
+                "type": "XmlValidation"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "manual": {
+                "inputs": {
+                    "method": "POST",
+                    "schema": {}
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    }
+}
