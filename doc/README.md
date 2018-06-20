@@ -53,13 +53,17 @@ Table of Content
 
 -   Create you flow
 
-    -   [Integration Account](create-receiver-adapter.md#create-an-integration-account)
+    -   [Integration
+        Account](create-receiver-adapter.md#create-an-integration-account)
+
     -   [Service Bus Queue](create-receiver-adapter.md#create-service-bus-queue)
+
     -   [Receiver Adapter](create-receiver-adapter.md)
 
     -   [Send Adapter](create-send-adapter.md)
 
-    -   [Business Flow](create-business-flow.md) and Handle API with Azure AD Authentication
+    -   [Business Flow](create-business-flow.md) and Handle API with Azure AD
+        Authentication
 
 -   Manage your API
 
@@ -85,53 +89,8 @@ Create a Backend API App
 
 ![](media/e86d951fba3e07b81576ffbf59970cd9.png)
 
-Register Azure AD App
-=====================
-
-Register Backend
-----------------
-
--   Register Backend API
-
-![](media/6eb114371692b281bbcfc9f7571c588a.png)
-
--   Note down App ID URI
-
-![](media/db036943274d2477eb76d52be4de7f97.png)
-
 Register Frontend
 -----------------
-
--   Register App for FrontEnd, We do not need an actual sign-on URL at this
-    moment.
-
-![](media/95d0f99e221b69ba648c57a39ab62616.png)
-
--   Configure required permission
-
-![](media/76c7d40889d24320835522d6c77eb2f2.png)
-
--   Choose the API we created above
-
-![](media/501f148a40fc2e7fa8ea449ddcd1b915.png)
-
--   Enable access
-
-![](media/eec4b40620b0556b8ce08a7616abd734.png)
-
--   Grant permission
-
-    -   <https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications>
-
-![](media/49674849b53b5e12ebe5251c49bece52.png)
-
--   Create a Key for Frontend App
-
-![](media/193e179d4c3cc9fd6b13396e020323b7.png)
-
--   Note down Key and Application Id
-
-![](media/77ec6565f00e5e37f0d0e753a80e08f3.png)
 
 Configure Backend API AAD
 =========================
@@ -139,10 +98,6 @@ Configure Backend API AAD
 -   Enable Backend API’s AAD authentication
 
 ![](media/5f0cba92c024501b3773d155f852f06f.png)
-
--   Create Backend API Azure AD Application
-
-![](media/339cdff7b09d6bbbaf62743fbda7df69.png)
 
 APIM
 ====
