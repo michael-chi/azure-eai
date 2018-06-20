@@ -4,6 +4,11 @@ Overview
 In this hands-on lab, we will be demonstrating a typical EAI message endpoint
 pattern implementation with Azure Logic App and APIM.
 
+In real world, each trading partner can use different protocols such as FTP,
+HTTP and Queue…etc; Message pattern in EAI is to separate message sending and
+receiving process with message channel, so that each part knows only small
+pieces of the message processing process.
+
 A high-level overview of the architecture illustrated below.
 
 -   Trading Partner represents the organization that will be sending or
@@ -50,9 +55,9 @@ Table of Content
 
     -   Integration Account
 
-    -   Receiver Adapter
+    -   [Receiver Adapter](create-receiver-adapter.md)
 
-    -   Send Adapter
+    -   [Send Adapter](create-send-adapter.md)
 
     -   Transaction Flow
 
