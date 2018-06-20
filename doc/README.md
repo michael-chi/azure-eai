@@ -53,13 +53,13 @@ Table of Content
 
 -   Create you flow
 
-    -   Integration Account
-
+    -   [Integration Account](create-receiver-adapter.md#create-an-integration-account)
+    -   [Service Bus Queue](create-receiver-adapter.md#create-service-bus-queue)
     -   [Receiver Adapter](create-receiver-adapter.md)
 
     -   [Send Adapter](create-send-adapter.md)
 
-    -   Transaction Flow
+    -   [Business Flow](create-business-flow.md) and Handle API with Azure AD Authentication
 
 -   Manage your API
 

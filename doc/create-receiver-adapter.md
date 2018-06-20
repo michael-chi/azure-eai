@@ -20,7 +20,7 @@ Prerequisites
 
 -   Azure Subscription
 
-Create an Integration Account
+# Create an Integration Account
 =============================
 
 An Integration Account is a container that manages B2B artifacts used in your
@@ -64,7 +64,7 @@ flow.
 
 ![](media/b9cb6272cfc82c53ee4d2148188634eb.png)
 
-Create Service Bus Queue
+# Create Service Bus Queue
 ========================
 
 In our lab we are using a Service Bus queue as an integration point between our
@@ -107,7 +107,7 @@ In our case a Basic tier service bus is sufficient.
 
 >   This is an internal queue for Contoso orders to be sent to SAP
 
-Create Receiver Adapter
+# Create Receiver Adapter
 =======================
 
 In this section, we will be creating a receiver adapter flow to allow Contoso
