@@ -96,6 +96,20 @@ Verify APIM APIs
 
 ![](media/3316086f65048f022b3749d11f4b5fa1.png)
 
+-   If required, you can change the URL schema in APIM. Go to APIM, APIs,
+    \<Logic API\>, Choose specific operation, Design then click the “Pen” icon
+
+![](media/2e7af1a14f0bbe1082c2c29d0a34107a.png)
+
+-   Modify URL here
+
+![](media/4ebb6a7ba4e6ea4e80747a2d5feed97f.png)
+
+-   Once Saved, go back to Developer Portal, Refresh the test page and Try Again
+    you’ll see the request URL has changed.
+
+![](media/396a4ef38174c3a062cb5dfdac1b6596.png)
+
 Protect Logic App with APIM
 ===========================
 
@@ -108,6 +122,27 @@ Then we will configure Azure AD integration on APIM and verify if required claim
 exists in JWT token, only when it exists in the token will the request be routed
 to backend Logic App.
 
->   Note that at this moment, Logic App does not allows “Authorization”Http Header,
->   so we will store Oauth token to another Http Header istead before request routed
->   to Logic App.
+>   Note that at this moment, Logic App does not allows “Authorization” Http
+>   Header, so we will store Oauth token to another Http Header nstead before
+>   request routed to Logic App.
+
+Setup Logic App IP whitelist
+
+In this section we will configure Logic App to only allows traffic coming from
+APIM
+
+-   Go to Azure portal, open the receiver adapter Logic App then Workflow
+    Settings
+
+![](media/e938eb6c0fd745e8d894e951cead898c.png)
+
+-   Add APIM’s IP address here then Save
+
+![](media/17220e788a39459d920f9be7a1cfbde0.png)
+
+-   Now if you try to POST message to Logic App URL, you will get below error
+    message
+
+![](media/796bc16eb6ef36931360a7c5e49d733f.png)
+
+Configure APIM with OAuth authentication
