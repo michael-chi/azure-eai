@@ -1,9 +1,9 @@
-﻿{
+{
     "$connections": {
         "value": {
             "servicebus": {
-                "connectionId": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/resourceGroups/michi-eai-pattern-rg/providers/Microsoft.Web/connections/servicebus",
-                "connectionName": "servicebus",
+                "connectionId": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/resourceGroups/michi-eai-pattern-rg/providers/Microsoft.Web/connections/servicebus-1",
+                "connectionName": "servicebus-1",
                 "id": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/providers/Microsoft.Web/locations/eastasia/managedApis/servicebus"
             }
         }
@@ -13,10 +13,20 @@
         "actions": {
             "Response": {
                 "inputs": {
-                    "body": "<Status>OK</Status>",
-                    "headers": {
-                        "Content-Type": "application/xml"
-                    },
+                    "body": "<Status>Failed</Status>",
+                    "statusCode": 200
+                },
+                "kind": "Http",
+                "runAfter": {
+                    "XML_Validation": [
+                        "Failed"
+                    ]
+                },
+                "type": "Response"
+            },
+            "Response_2": {
+                "inputs": {
+                    "body": "<Status>Accepted</Status>",
                     "statusCode": 200
                 },
                 "kind": "Http",
@@ -30,7 +40,7 @@
             "Send_message": {
                 "inputs": {
                     "body": {
-                        "ContentData": "@{base64(actionOutputs('Transform_XML').body)}",
+                        "ContentData": "@{base64(body('Transform_XML'))}",
                         "ContentType": "application/xml"
                     },
                     "host": {
@@ -56,7 +66,7 @@
                     "content": "@{triggerBody()}",
                     "integrationAccount": {
                         "map": {
-                            "name": "Ordero-To-SAP"
+                            "name": "Order-Map-To-SAP"
                         }
                     }
                 },
@@ -67,21 +77,6 @@
                 },
                 "type": "Xslt"
             },
-          "Validation_Failed": {
-            "inputs": {
-              "body": {
-                "Status": "Failed"
-              },
-              "statusCode": 200
-            },
-            "kind": "Http",
-            "runAfter": {
-              "XML_Validation": [
-                "Failed"
-              ]
-            },
-            "type": "Response"
-          },
             "XML_Validation": {
                 "inputs": {
                     "content": "@{triggerBody()}",

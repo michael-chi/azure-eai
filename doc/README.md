@@ -49,7 +49,7 @@ Table of Content
 
 -   Preparation
 
-    -   [Create a Backend API App](#create-a-backend-api-app)
+    -   [Create a Backend API App](backendapi-setup-azuread.md#create-a-backend-api-app)
 
     -   [Set up Azure AD Authentication for Backend API](backendapi-setup-azuread.md#configure-azure-ad-authentication-for-your-backend-api)
 
@@ -66,39 +66,20 @@ Table of Content
 
     -   [Send Adapter](create-send-adapter.md)
 
-    -   [Business Flow](create-business-flow.md) and Handle API with Azure AD
-        Authentication
+    -   [Business Flow](create-business-flow.md)
+    
+    -   [Invoke API with Azure AD Authentication](create-business-flow.md#invoke-azure-ad-protected-api-in-logic-app)
 
--   Manage your API
+-   Protect and Manage your API
 
     -   APIM integration with Logic App
-
-    -   Azure AD integration with your backend API
-
-    -   Create a sample frontend app
+        
+    - APIM guarded Logic App invoking Azure AD protected API
 
 -   Monitor your business flow with built-in services
 
-Create a Backend API App
-========================
 
--   For simplicity sake, we’ve prepare a backend [REST
-    API](../source/EAIBackendAPI). It only echoes back fixed string in this lab,
-    you can modify it to fit your requirement.
 
--   Open the solution file with Visual Studio and deploy to you Azure
-    Subscription
-
--   Make sure you see below results.
-
-![](media/e86d951fba3e07b81576ffbf59970cd9.png)
-
-Configure Backend API with AAD Authentication
-=============================================
-
--   Enable Backend API’s AAD authentication
-
-![](media/5f0cba92c024501b3773d155f852f06f.png)
 
 APIM
 ====

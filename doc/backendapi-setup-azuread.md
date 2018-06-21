@@ -28,8 +28,21 @@ Prerequisites
 
 -   Deployed Backend API to Azure as a API App or Web App
 
-Configure Azure AD authentication for your Backend API
-======================================================
+# Create a Backend API App
+
+-   For simplicity sake, we’ve prepare a backend [REST
+    API](../source/EAIBackendAPI). It only echoes back fixed string in this lab,
+    you can modify it to fit your requirement.
+
+-   Open the solution file with Visual Studio and deploy to you Azure
+    Subscription
+
+-   Make sure you see below results.
+
+![](media/e86d951fba3e07b81576ffbf59970cd9.png)
+
+# Configure Azure AD authentication for your Backend API
+
 
 In this section we will be configuring our API App to use Azure AD as its
 authentication identity provider. So that access to this application requires
@@ -70,8 +83,7 @@ Azure AD authentication.
 
 ![](media/227c26d0fcf53d5f21aa4211822e97bf.png)
 
-Register Frontend application
-=============================
+# Register Frontend application
 
 Now we are good to register an Azure AD application for our frontend
 application. You don’t have to have an actual application to register one, this

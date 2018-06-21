@@ -1,0 +1,118 @@
+{
+    "$connections": {
+        "value": {
+            "office365": {
+                "connectionId": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/resourceGroups/michi-eai-pattern-rg/providers/Microsoft.Web/connections/office365",
+                "connectionName": "office365",
+                "id": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/providers/Microsoft.Web/locations/eastasia/managedApis/office365"
+            },
+            "servicebus": {
+                "connectionId": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/resourceGroups/michi-eai-pattern-rg/providers/Microsoft.Web/connections/servicebus",
+                "connectionName": "servicebus",
+                "id": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/providers/Microsoft.Web/locations/eastasia/managedApis/servicebus"
+            }
+        }
+    },
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "HTTP": {
+                "inputs": {
+                    "authentication": {
+                        "audience": "cbd412df-fb29-432f-88a2-494fa501812d",
+                        "clientId": "c9c4b9ba-8364-49e5-bb77-0b8ed81615c9",
+                        "secret": "AquzjfcocA0N/a8Osg1t2T+U2iVJc/qeh4h3w0qZ+3w=",
+                        "tenant": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+                        "type": "ActiveDirectoryOAuth"
+                    },
+                    "body": {
+                        "content": "@{base64ToString(triggerBody()?['ContentData'])}"
+                    },
+                    "method": "POST",
+                    "uri": "https://michieaibackendapi.azurewebsites.net/api/submit"
+                },
+                "runAfter": {},
+                "type": "Http"
+            },
+            "Send_an_email": {
+                "inputs": {
+                    "body": {
+                        "Body": "An Oorder has failed processing, Message content:@{base64ToString(triggerBody()?['ContentData'])}",
+                        "Importance": "High",
+                        "IsHtml": false,
+                        "Subject": "Error Processing Order from Contoso",
+                        "To": "michi@microsoft.com"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['office365']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/Mail"
+                },
+                "runAfter": {
+                    "HTTP": [
+                        "Failed",
+                        "Skipped",
+                        "TimedOut"
+                    ]
+                },
+                "type": "ApiConnection"
+            },
+            "Send_message": {
+                "inputs": {
+                    "body": {
+                        "ContentData": "@{base64(body('HTTP'))}",
+                        "ContentType": "application/xml"
+                    },
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['servicebus']['connectionId']"
+                        }
+                    },
+                    "method": "post",
+                    "path": "/@{encodeURIComponent(encodeURIComponent('adapter-sendto-contoso'))}/messages",
+                    "queries": {
+                        "systemProperties": "None"
+                    }
+                },
+                "runAfter": {
+                    "HTTP": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "When_a_message_is_received_in_a_queue_(auto-complete)": {
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['servicebus']['connectionId']"
+                        }
+                    },
+                    "method": "get",
+                    "path": "/@{encodeURIComponent(encodeURIComponent('queue-contoso-to-sap'))}/messages/head",
+                    "queries": {
+                        "queueType": "Main"
+                    }
+                },
+                "recurrence": {
+                    "frequency": "Month",
+                    "interval": 3
+                },
+                "type": "ApiConnection"
+            }
+        }
+    }
+}

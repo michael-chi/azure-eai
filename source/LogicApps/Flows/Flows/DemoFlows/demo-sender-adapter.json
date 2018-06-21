@@ -1,0 +1,90 @@
+{
+    "$connections": {
+        "value": {
+            "azureblob": {
+                "connectionId": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/resourceGroups/michi-eai-pattern-rg/providers/Microsoft.Web/connections/azureblob",
+                "connectionName": "azureblob",
+                "id": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/providers/Microsoft.Web/locations/eastasia/managedApis/azureblob"
+            },
+            "servicebus": {
+                "connectionId": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/resourceGroups/michi-eai-pattern-rg/providers/Microsoft.Web/connections/servicebus",
+                "connectionName": "servicebus",
+                "id": "/subscriptions/e35c484f-2d35-479f-8adb-9fe20c79394e/providers/Microsoft.Web/locations/eastasia/managedApis/servicebus"
+            }
+        }
+    },
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "For_each": {
+                "actions": {
+                    "Create_blob": {
+                        "inputs": {
+                            "body": "@base64ToBinary(items('For_each')?['ContentData'])",
+                            "host": {
+                                "connection": {
+                                    "name": "@parameters('$connections')['azureblob']['connectionId']"
+                                }
+                            },
+                            "method": "post",
+                            "path": "/datasets/default/files",
+                            "queries": {
+                                "folderPath": "/contoso",
+                                "name": "@items('For_each')?['LockToken']",
+                                "queryParametersSingleEncoded": true
+                            }
+                        },
+                        "runAfter": {},
+                        "runtimeConfiguration": {
+                            "contentTransfer": {
+                                "transferMode": "Chunked"
+                            }
+                        },
+                        "type": "ApiConnection"
+                    }
+                },
+                "foreach": "@body('Get_messages_from_a_queue_(peek-lock)')",
+                "runAfter": {
+                    "Get_messages_from_a_queue_(peek-lock)": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Foreach"
+            },
+            "Get_messages_from_a_queue_(peek-lock)": {
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['servicebus']['connectionId']"
+                        }
+                    },
+                    "method": "get",
+                    "path": "/@{encodeURIComponent(encodeURIComponent('adapter-sendto-contoso'))}/messages/batch/peek",
+                    "queries": {
+                        "maxMessageCount": 20,
+                        "queueType": "Main"
+                    }
+                },
+                "runAfter": {},
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "Recurrence": {
+                "recurrence": {
+                    "frequency": "Week",
+                    "interval": 3
+                },
+                "type": "Recurrence"
+            }
+        }
+    }
+}

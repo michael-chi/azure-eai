@@ -40,7 +40,7 @@ Create business flow
     below format. In Logic App you do this by specifying your own content in
     text with “expressions” when needed.
 
-    In this case, the message content that will be sending to the backend API is
+-   In this case, the message content that will be sending to the backend API is
     the XML message content we retrieved from Service Bus Queue, we just need to
     decorate it with surrounding JSON tags.
 
@@ -108,3 +108,36 @@ Create business flow
 ![](media/033a39ee8bfb085be45cc0539f17ff84.png)
 
 -   Save your Logic App
+
+Invoke Azure AD Protected API in Logic App
+
+In this section we will be discussing how a Logic App action invokes backend API
+protected by Azure AD with Logic App’s built-in support.
+
+-   Go to HTTP action
+
+-   Click “Show Advanced Options”
+
+![](media/5322aa03bb438555e7711d6bdf22665d.png)
+
+-   Choose Auzre AD Oauth
+
+![](media/085cc515c751bad27eae05364d9b169b.png)
+
+-   Fill in required information
+
+    -   Tenant is the tenant ID of your Azure AD tenant, it can be found in
+        Azure Active Directory, Properties, Directory ID
+
+    -   Audience is the application Id of your backend application since after
+        authentication succeed, the token audience is our backend application
+
+    -   Client ID is your frontend application’s Azure AD application ID
+
+    -   Credential Type should be Secret
+
+    -   Secret is the Key we generated for your frontend application
+
+![](media/5cc51c1d376b87f7cac8066bfb98d244.png)
+
+-   Click Save to save your changes.
