@@ -49,7 +49,11 @@ Table of Content
 
 -   Preparation
 
-    -   Create a Backend API App
+    -   [Create a Backend API App](#create-a-backend-api-app)
+
+    -   [Set up Azure AD Authentication for Backend API](backendapi-setup-azuread.md#configure-azure-ad-authentication-for-your-backend-api)
+
+    -   [Verify Azure AD with Frontend App](backendapi-setup-azuread.md#register-frontend-application)
 
 -   Create you flow
 
@@ -89,11 +93,8 @@ Create a Backend API App
 
 ![](media/e86d951fba3e07b81576ffbf59970cd9.png)
 
-Register Frontend
------------------
-
-Configure Backend API AAD
-=========================
+Configure Backend API with AAD Authentication
+=============================================
 
 -   Enable Backend API’s AAD authentication
 

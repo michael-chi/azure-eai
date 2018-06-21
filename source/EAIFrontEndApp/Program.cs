@@ -13,7 +13,8 @@ namespace ConsoleApp1
 {
     class Program
     {
-        static readonly string AUTHORITY = "https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db47";
+        //AUTHORITY = https://login.microsoftonline.com/<Azure AD Tenant ID>
+        static readonly string AUTHORITY = "<AUTHORITY>";
         //[OR] static readonly string AUTHORITY = "https://login.microsoftonline.com/microsoft.onmicrosoft.com";
         static readonly string FRONT_APP_KEY = "<KEY>";
         static readonly string FRONT_APP_ID = "xxxxaxxxx-xxxx-xxxx-xxxx-xxxxx";

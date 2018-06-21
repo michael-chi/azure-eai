@@ -92,26 +92,63 @@ step is to configure required access permission for future uses.
 -   Now we need to grant backend API access to our frontend application. Go to
     Settings, Required Permissions.
 
-    ![](media/76c7d40889d24320835522d6c77eb2f2.png)
+![](media/76c7d40889d24320835522d6c77eb2f2.png)
 
 -   Choose the backend API application we created above
 
 ![](media/501f148a40fc2e7fa8ea449ddcd1b915.png)
 
--   Grant Required access
+-   Make sure you check required permission
 
 ![](media/eec4b40620b0556b8ce08a7616abd734.png)
 
 -   Grant permission to our applications
 
-    -   <https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications>
+Details of Grant permission :
+<https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-integrating-applications>
 
 ![](media/49674849b53b5e12ebe5251c49bece52.png)
 
--   Create a Key for Frontend App
+-   Create a Key for Frontend App, this key is referred as Client Secret in your
+    frontend application. Note that this key will only be shown once after you
+    click “Save” so be sure to note it down.
 
 ![](media/193e179d4c3cc9fd6b13396e020323b7.png)
 
--   Note down Key and Application Id
+-   Note down Key and Application Id, this will be refered as Client ID in your
+    frontend application
 
 ![](media/77ec6565f00e5e37f0d0e753a80e08f3.png)
+
+Verify Azure AD Authentication with Frontend App
+
+-   I have a frontend application ready [here](../source/EAIFrontEndApp)
+
+-   Open Program.cs and modify placeholder to corresponding values
+
+    -   Authority is the authority URL that will authenticate users, it is in
+        the form of
+        [https://loing.microsoftonline.com/\<Tenant](https://loing.microsoftonline.com/%3cTenant)
+        ID\>
+
+>   A tenant ID is a GUID that represents your Azure AD tenant, it can be found
+>   in Azure AD management console -\> Properties -\> Directory ID
+
+![](media/c275bcaaee45684370c3633f20bfa4ab.png)
+
+-   FRONT_APP_ID is the application Id we copied from Frontend application
+    registration step
+
+-   FRONT_APP_KEY is the client secret we generated in Frontend application
+    registration step
+
+-   BACKEND_APP_ID is the application Id we copied from Backend application
+    registration step.
+
+![](media/e4b7b9f24ae4d1813ba99dbff90e988f.png)
+
+-   Go to Main(), modify Url to your API URL
+
+![](media/5e53da9b8b7411a6b41f4d8fe83b68e1.png)
+
+-   Hit F5 to run.
