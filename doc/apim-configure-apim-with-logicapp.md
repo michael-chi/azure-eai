@@ -26,3 +26,88 @@ Create an APIM managed Logic App API
     for development and testing purpose, Developer tier is sufficient.
 
 ![](media/721a4f592f9b8b34aaa54320b061751c.png)
+
+-   Once created, open up Essential Blade, copy the VIP address of APIM
+    instance, we will need it later.
+
+![](media/117674983663b75be2c02fcd13fd78dd.png)
+
+-   Next, we will be creating a set of “API”, which backed by our Logic App so
+    that client (the Trading partner) does not directly interact with Logic App
+    but go througth APIM. Hence we have opportunity to manage and monitor usage
+    from different partners.
+
+-   To create new API, click API in left panel, Add API then Logic App
+
+![](media/fc7d536a3ac5c15f5aad9741ccd93776.png)
+
+-   Choose the receiver adapter Logic App we created earlier.
+
+    -   API URL suffix will be added to the end of your API URL, if your API
+        come with query string then it can make API call not functional properly
+
+    -   Tags can be any text
+
+    -   Product is how you group your APIs into a set of APIs provided to your
+        customers. We use default Product “Starter” here, you can create new one
+        if you like
+
+    -   Versioning
+
+        -   Check “Vision this API” if you expect to provide different version
+            of API
+
+        -   Versioning schema is how your APIs differenciate between different
+            API versions
+
+        -   Version identifier will be added to your URL to differenciate
+            different versions
+
+![](media/5e34fed1b9b66e03b3e72e949eb335f0.png)
+
+Verify APIM APIs
+================
+
+-   Once created, you shoud see screen similar like this. To verify our work,
+    click Developer portal to bring up developer portal.
+
+![](media/50d081f8543710468ba2305b2793dad5.png)
+
+-   As we are the administrator of this API, we are automatically signed in.
+    Click Products, then click on the Products we added the receiver adapter
+    API, in this case, “Starter”.
+
+![](media/12842a13222ab56bcff8c56253142026.png)
+
+-   Click the API we added
+
+![](media/b30de0d09911e69e2a9c2ce7b655be4a.png)
+
+-   Click “Try it”to test the API
+
+![](media/f3741709b7727737bc8a02d6ac135a3d.png)
+
+-   Paste sample request XML and click Send button in the bottom of test page
+
+![](media/dd54ea47b747d842ce3b140d5bb75753.png)
+
+-   If everything works well, you should see below response. Now our Logic App
+    is ready to accept order from our trading partners.
+
+![](media/3316086f65048f022b3749d11f4b5fa1.png)
+
+Protect Logic App with APIM
+===========================
+
+In this section, we will be demonstrating protect our Logic App with APIM.
+
+We will first setup Logic App’s IP restriction that only allows traffic coming
+from APIM to Logic App.
+
+Then we will configure Azure AD integration on APIM and verify if required claim
+exists in JWT token, only when it exists in the token will the request be routed
+to backend Logic App.
+
+>   Note that at this moment, Logic App does not allows “Authorization”Http Header,
+>   so we will store Oauth token to another Http Header istead before request routed
+>   to Logic App.
