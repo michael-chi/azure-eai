@@ -1,5 +1,4 @@
-Overview
-========
+# Overview
 
 An API Management instance is an API gateway that provides throttling control,
 access restriction control and management to your APIs. In this lab we will be
@@ -11,16 +10,14 @@ backend API. We will configure APIM to allow and check Oauth 2.0 based
 authentication token. We will also configure Logic App to allow traffic from
 APIM only so that your Logic App is protected by APIM with Oauth 2.0.
 
-Prerequirests
-=============
+# Prerequirests
 
 -   Azure Subscription
 
 -   Complete [Backend API Azure AD setup](backendapi-setup-azuread.md) and
     [business flow Logic Apps](create-business-flow.md)
 
-Create an APIM managed Logic App API
-====================================
+# Create an APIM managed Logic App API
 
 -   Goto Azure Portal, create an empty APIM instance, here I choose Basic tier,
     for development and testing purpose, Developer tier is sufficient.
@@ -65,8 +62,8 @@ Create an APIM managed Logic App API
 
 ![](media/5e34fed1b9b66e03b3e72e949eb335f0.png)
 
-Verify APIM APIs
-================
+# Verify APIM APIs
+
 
 -   Once created, you shoud see screen similar like this. To verify our work,
     click Developer portal to bring up developer portal.
@@ -110,8 +107,7 @@ Verify APIM APIs
 
 ![](media/396a4ef38174c3a062cb5dfdac1b6596.png)
 
-Protect Logic App with APIM
-===========================
+# Protect Logic App with APIM
 
 In this section, we will be demonstrating protect our Logic App with APIM.
 
@@ -145,4 +141,4 @@ APIM
 
 ![](media/796bc16eb6ef36931360a7c5e49d733f.png)
 
-Configure APIM with OAuth authentication
+# Configure APIM with OAuth authentication

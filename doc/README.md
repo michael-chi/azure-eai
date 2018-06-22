@@ -70,85 +70,12 @@ Table of Content
     
     -   [Invoke API with Azure AD Authentication](create-business-flow.md#invoke-azure-ad-protected-api-in-logic-app)
 
--   Protect and Manage your API
+-   Secure and Manage your Logic App API
 
-    -   APIM integration with Logic App
+    -   [APIM integration with Logic App](apim-configure-apim-with-logicapp.md#create-an-apim-managed-logic-app-api)
         
-    - APIM guarded Logic App invoking Azure AD protected API
+    -   APIM guarded Logic App invoking Azure AD protected API
 
 -   Monitor your business flow with built-in services
 
 
-
-
-APIM
-====
-
--   Create from Swagger File
-
-![](media/ff5a4b04db199b9fd742c4153d25f398.png)
-
--   Upload Swagger file and specify an API URL suffix
-
-![](media/16c1f9d607ee675a47d6ae9beee7c74a.png)
-
--   Configure Azure AD OAuth Integration
-
-![](media/ca8785473800378d6698498c098f093f.png)
-
--   First part
-
-![](media/e12ff17ff26ccfaf9a2cc8c02a4bc19b.png)
-
--   Get Endpoints from Azure AD console
-
-![](media/c61456094658f3d1e9fa4f96a812137c.png)
-
--   Second part
-
-![](media/c72cabbdf8f2a7bdc4ec5d3653420d3e.png)
-
--   Grant Type (For OAuth)
-
-![](media/4e703d1d42d85f5cd6ab1e37058d138e.png)
-
--   Get Backend Application Id from Azure AD
-
-![](media/89ca258ef3e8239712ab5e492bdb53cc.png)
-
--   Paste it here
-
-![](media/dc48274c9b81fde3efc78bc6f513783e.png)
-
--   Specify Client Credential, Retrieve Client ID and Secret from Azure AD app
-    page
-
-![](media/9e48cfc6e78072990fb21f3f420dee29.png)
-
--   Paste it here
-
-![](media/6ae5c2db2950d4e4568522486c472995.png)
-
--   Note down Reply URL
-
-![](media/71aa4036148d246361b4f51dc658557e.png)
-
--   Complete
-
-![](media/7098c8d2977b5570936955b769248fe5.png)
-
--   Got back to API, Settings
-
-![](media/7198d86fc4067d4cea2e20af453869b8.png)
-
--   Choose OAuth Authentication we just created
-
-![](media/9429bb532a9a6c4624cf6f3068e0b1f9.png)
-
--   Get back to APIM, Create or Add our API to a product
-
-![](media/4b51f8ee39aacbbdb4b0359552330fb6.png)
-
--   Go to Azure AD, we need to update Frontend App’s Reply URL
-
-![](media/0c2bea27ed2ce6868150f4cedc2099b4.png)
