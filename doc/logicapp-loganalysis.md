@@ -75,11 +75,10 @@ Monitor Message and Logic App Runs
 -   Start a new Tab and input below query to query window, this will search for
     “demo-receive-adapter” Logic App runs has Tracked Properties OrderNumbers2
     with value equals “2001”
-
->   AzureDiagnostics
-
->   \| where Category == "WorkflowRuntime"
-
->   \| where resource_workflowName_s == "demo-receive-adapter"
-
->   \| where (trackedProperties_OrderNumber2_s) == "2001"
+    
+```sql
+   AzureDiagnostics
+    | where Category == "WorkflowRuntime"
+    | where resource_workflowName_s == "demo-receive-adapter"
+    | where (trackedProperties_OrderNumber2_s) == "2001"
+```
