@@ -55,7 +55,7 @@ Table of Content
 
     -   [Verify Azure AD with Frontend App](backendapi-setup-azuread.md#register-frontend-application)
 
--   Create you flow
+-   Create business flow
 
     -   [Integration
         Account](create-receiver-adapter.md#create-an-integration-account)
@@ -73,9 +73,11 @@ Table of Content
 -   Secure and Manage your Logic App API
 
     -   [APIM integration with Logic App](apim-configure-apim-with-logicapp.md#create-an-apim-managed-logic-app-api)
-        
-    -   APIM guarded Logic App invoking Azure AD protected API
 
--   Monitor your business flow with built-in services
+    -   [Secure APIM API with Azure AD OAuth 2.0](apim-configure-oauth20.md)
+
+-   Monitor yout business flow
+
+    -   [Tracked Properties and Log Analysis](logicapp-loganalysis.md)
 
 
