@@ -70,6 +70,8 @@ Table of Content
     
     -   [Invoke API with Azure AD Authentication](create-business-flow.md#invoke-azure-ad-protected-api-in-logic-app)
 
+    _   (Optional) [Invoke on-prem Web Service](logicapp-hybrid-connection.md)
+
 -   Secure and Manage your Logic App API
 
     -   [APIM integration with Logic App](apim-configure-apim-with-logicapp.md#create-an-apim-managed-logic-app-api)
