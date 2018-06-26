@@ -9,7 +9,7 @@ process and then send to next flow for further processing.
 
 A high-level design looks like this
 
-![](media/e35bc0a8044ca3440825fd822f645508.png)
+![](media/3ccba73864c88b40c09832c0ee858f2d.png)
 
 Create business flow
 ====================
@@ -41,30 +41,19 @@ Create business flow
     text with “expressions” when needed.
 
 -   In this case, the message content that will be sending to the backend API is
-    the XML message content we retrieved from Service Bus Queue, we just need to
-    decorate it with surrounding JSON tags.
+    the XML message content we retrieved from Service Bus Queue
 
-{
-
-“content”:”\<MESSAGE CONTENT\>”
-
-}
-
--   Modify “Body” column as below
+>   Modify “Body” column as below
 
 ![](media/2e453eaa93f2410a0a45eff0b583b1f1.png)
 
--   Move your cursor to the middle of “double quote”
+-   Place your cursor in “Body” field and select “Content” from right panel
 
-![](media/c86a8341eb15d68a7e944b72a8fc34f6.png)
-
--   From right panel, click “Content” from Service Bus Action
-
-![](media/846223b93bb6e7810e671df81e6ac698.png)
+![](media/749fa6008ce00eefb07e2b45d4bfdc5c.png)
 
 -   Your action should look similar to this
 
-![](media/e41bad10d3564f0bd34cf761716d321e.png)
+![](media/1d1cc7fe7bd97b270f70c09aed00ce6e.png)
 
 -   Now we want to send the message back to Contoso. Our protocol is to put
     messages to a particular queue so that Sender adapter flow will pick them up

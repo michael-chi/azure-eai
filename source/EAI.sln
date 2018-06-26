@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Flows", "Flows", "{53A77B0B
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Flows", "LogicApps\Flows\Flows\Flows.deployproj", "{8C173792-910E-4C58-B382-ACFF4B05A275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAIFunctionsBackend", "EAIFunctionsBackend\EAIFunctionsBackend.csproj", "{B0076ADD-E8D8-405F-89E2-F91B78882216}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlTest", "XmlTest\XmlTest.csproj", "{89C4B6C9-AB44-43DB-9240-254D1938678A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{8C173792-910E-4C58-B382-ACFF4B05A275}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C173792-910E-4C58-B382-ACFF4B05A275}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C173792-910E-4C58-B382-ACFF4B05A275}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0076ADD-E8D8-405F-89E2-F91B78882216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0076ADD-E8D8-405F-89E2-F91B78882216}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0076ADD-E8D8-405F-89E2-F91B78882216}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0076ADD-E8D8-405F-89E2-F91B78882216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89C4B6C9-AB44-43DB-9240-254D1938678A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C4B6C9-AB44-43DB-9240-254D1938678A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C4B6C9-AB44-43DB-9240-254D1938678A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C4B6C9-AB44-43DB-9240-254D1938678A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

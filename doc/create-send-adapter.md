@@ -76,8 +76,8 @@ Create Receiver Adapter flow
 
 -   Specify message information
 
-    -   Blob name should be unique, here we use the LockToken as our blob file
-        name
+    -   Blob name should be unique, here we use the OrderID-LockToken.txt as our
+        blob file name
 
     -   Blob content is the message content to be sent, here it is the Content
         of Service Bus queue action
@@ -86,6 +86,37 @@ Create Receiver Adapter flow
         Storage account
 
 ![](media/00722c0df249d1cfa2fffbe8a11cc6b2.png)
+
+-   Move your cursor to Blob name filed, we now want to create naming template
+    for all messages.
+
+>   Note that messages coming from Service Bus is in byte array format, and is
+>   converted to Base64 string, hence here we need to first decode base 64
+>   string, and then use XQuery to get OrderID from the xml document. We do this
+>   by using “Expression”
+
+-   **decodeBase64(item**s**(**'For_each'**)**['ContentData']**)** gives you the
+    base 64 decoded string from current item.
+
+-   **xml(decodeBase64(item**s**(**'For_each'**)**['ContentData']**))** convert
+    string into a xml object
+
+-   xpath(xml(decodeBase64(items('For_each')['ContentData'])),'//OrderId/text()')[0]
+    gives you first OrderID node’s inner text which is the Order Id
+
+>   Fill in below code to right Expression panel then click OK or Update
+
+>   xpath(XML(decodeBase64(items('For_each')?['ContentData'])),'//OrderNumber/text()')[0]
+
+![](media/a6ba1edf45cab6bb6f6bfe141d6bcd6d.png)
+
+-   You Action should looks like this
+
+![](media/cdd4ceb9a79ae5086c389b3459628e76.png)
+
+-   Complete the Blob name as below
+
+![](media/18f2b2402ffb54f9bae04d452645888a.png)
 
 -   Now we are to specify the storage account we want to use. You have to create
     one in advance

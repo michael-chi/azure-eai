@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="C:\Temp\JCI\EAI\EAIBackendAPI\obj\Release\Package\PackageTmp" />
-  <setAcl path="C:\Temp\JCI\EAI\EAIBackendAPI\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="C:\Temp\JCI\EAI\EAIBackendAPI\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <IisApp path="C:\Users\Michael SH Chi\Documents\SourceCodes\git\azure-eai\source\EAIBackendAPI\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\Users\Michael SH Chi\Documents\SourceCodes\git\azure-eai\source\EAIBackendAPI\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Michael SH Chi\Documents\SourceCodes\git\azure-eai\source\EAIBackendAPI\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>

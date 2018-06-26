@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Xml;
+using Newtonsoft.Json;
 using Swashbuckle.Swagger.Annotations;
 
 namespace EAIBackendAPI.Controllers
@@ -34,22 +36,53 @@ namespace EAIBackendAPI.Controllers
         {
             return "accepted";
         }
+
         // POST api/values
         [SwaggerOperation("Submit")]
         [Route("api/submit")]
         [SwaggerResponse(HttpStatusCode.Created)]
         public HttpResponseMessage SubmitPO2(HttpRequestMessage request)
         {
+#if false
             var content = request.Content;
             string jsonContent = content.ReadAsStringAsync().Result;
+            string orderId = "";
+            string exception = "";
+            dynamic json = null;
             try
             {
-                System.IO.File.WriteAllText(@"./" + Guid.NewGuid().ToString() + ".json", jsonContent);
-            }catch(Exception exp)
-            {
-                jsonContent += "|[Exception]" + exp.Message;
+                jsonContent = Task.Run( () => request.Content.ReadAsStringAsync()).Result;
+                //System.IO.File.WriteAllText(@"./" + Guid.NewGuid().ToString() + ".json", jsonContent);
+                //jsonContent = "Order has been processed.";
+                json = JsonConvert.DeserializeObject(jsonContent);
+                var xml = new XmlDocument();
+                xml.LoadXml((string)json.content);
+                orderId = $"{xml.SelectSingleNode("//SAPOrder/OrderId")?.Value}|{xml.SelectSingleNode("//OrderId")?.Value}|{xml.SelectSingleNode("//*[local-name()='OrderId']")?.Value}";
             }
-            return request.CreateResponse<string>(HttpStatusCode.OK, $"<Message><Status>Accepted</Status><Desc><![CDATA[{jsonContent}]]><Desc></Message>");
+            catch(Exception exp)
+            {
+                exception = exp.Message;
+            }
+            return request.CreateResponse<string>(HttpStatusCode.OK, $"<Message><OrderNumber>{orderId}</OrderNumber><Status>Accepted</Status><Desc><![CDATA[{jsonContent}]]><Desc><Exception><![CDATA[{exception}]]></Exception></Message>");
+#else
+            byte[] jsonContent = request.Content.ReadAsByteArrayAsync().Result;
+            string jsonText = request.Content.ReadAsStringAsync().Result;
+            string orderId = "";
+            string exception = "";
+            try
+            {
+                var xml = new XmlDocument();
+                xml.LoadXml($"{jsonText}");
+                //orderId = $"{xml.DocumentElement.SelectSingleNode("//SAPOrder/OrderId")?.Value}|{xml.SelectSingleNode("//*[local-name()='OrderId']")?.Value}";//|{xml.SelectSingleNode("/*[local-name()='SAPOrder']/[local-name()='OrderId']")?.Value}";
+                orderId = $"{xml.DocumentElement.SelectSingleNode("//OrderId")?.InnerText}";//or |{xml.SelectSingleNode("//*[local-name()='OrderId']")?.InnerText};
+            }
+            catch (Exception exp)
+            {
+                exception = exp.Message;
+            }
+            return request.CreateResponse<string>(HttpStatusCode.OK, $"<Message><OrderNumber>{orderId}</OrderNumber><Status>Processing</Status><Desc><![CDATA[{jsonText}]]></Desc><Exception><![CDATA[{exception}]]></Exception></Message>");
+
+#endif
         }
         // POST api/values
         [SwaggerOperation("Submit2")]
