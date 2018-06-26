@@ -35,7 +35,7 @@
                                         }
                                     },
                                     "method": "get",
-                                    "path": "/datasets/default/files/@{encodeURIComponent(encodeURIComponent('/contoso/',items('For_each')?['DisplayName']))}/content",
+                                    "path": "/datasets/default/files/@{encodeURIComponent(encodeURIComponent('/contoso/', items('For_each')?['DisplayName']))}/content",
                                     "queries": {
                                         "inferContentType": true
                                     }
@@ -117,7 +117,7 @@
                     "actions": {
                         "Response_2": {
                             "inputs": {
-                                "schema": [],
+                                "body": [],
                                 "statusCode": 200
                             },
                             "kind": "http",
