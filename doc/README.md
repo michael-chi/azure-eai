@@ -70,7 +70,7 @@ Table of Content
     
     -   [Invoke API with Azure AD Authentication](create-business-flow.md#invoke-azure-ad-protected-api-in-logic-app)
 
-    -   [Batch Processing](logicapp-batch-processing)
+    -   [Batch Processing](logicapp-batch-processing.md)
 
     -   (Optional) [Invoke on-prem Web Service](logicapp-hybrid-connection.md)
 
